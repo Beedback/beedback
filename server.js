@@ -1,7 +1,7 @@
 const express = require('express');                             // express 라우팅 패키지 import
 const app = express();
 const path = require('path');
-const bodyParser = require("body-parser");                      // html form 메소드 파서
+const bodyParser = require("body-parser");   //http request / response -> post 방식                   // html form 메소드 파서
 const session = require("express-session");                     // express 세션 플러그인
 const cookieParser = require('cookie-parser');
 const passport = require('./router/passport');                  // passport 로그인 인증

@@ -1,0 +1,305 @@
+body
+{
+    background: url("img/back2.png");
+    overflow: hidden ;
+}
+.row{
+    
+    width : 80%;
+    max-width:1100px;
+    margin: 0 auto;
+    
+    
+}
+
+#head_li{
+   
+}
+.logo_img
+{
+
+    margin-top: 5%;
+    margin-left: 1.5%;
+    border-right: solid 1px;
+    border-color : #FFFFFF;
+}
+
+
+ul {
+    /*float: right;*/
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-left: 1.5%;
+   
+
+}
+li {
+    font-size: 16px;
+    font-family: "Nirmala UI";
+     	
+}
+
+li a {
+    color: #ffffff;
+}
+
+.btn{
+    border: none;
+    background-color: transparent;
+}
+
+
+.border {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 1px;
+    pointer-events: none;
+}
+.navboard{
+    display: inline-block;
+    text-align: center;
+    font-size: 25px;
+
+}
+.board1{
+    width: 200px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.collapse{
+
+}
+
+
+.project_board
+{   
+    width : 80%;
+    max-width:1100px;
+    margin-top: 2%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding : 10px;
+}
+
+.project_table
+{
+
+    border-color: #dadada;
+    font-family: "Nirmala UI";
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    table-layout:fixed;
+    margin : 0 auto;
+    
+  
+
+}
+
+/*    이미지 css     */
+.project_table_img{
+    border-top: solid 1px;
+    border-color: #dadada;
+    max-width: 180px;
+    min-width: 180px;
+    min-height: 150px;
+    max-height: 150px;
+    text-align:center;
+    padding: 7px 20px 7px 7px;
+}
+
+.table_img{
+
+    border:solid 1px;
+    border-color: #dadada;
+    max-width: 150px;
+    min-width: 150px;
+    min-height: 120px;
+    max-height: 120px;
+
+}
+/*     제목 내용 작성자 날짜 css     */
+.project_table_name
+{
+    border-top: solid 1px;
+    border-color: #dadada;
+    max-width: 550px;
+    min-width: 550px;;
+    color: #7473c4;
+    font-size: 20px;
+
+}
+
+.project_table_subject{
+    max-width: 550px;
+    min-width: 550px;
+
+}
+
+.project_table_user{
+    max-width: 550px;
+    min-width: 550px;
+    border-top: solid 1px;
+    border-color: #dadada;
+    color: #6a6a6a;
+    font-size: 12px;
+}
+/*    조회수 및 코멘트 수 css    */
+.project_table_VC{
+
+    border-top: solid 1px;
+    border-color: #dadada;
+    max-width: 80px;
+    min-width: 80px;
+    text-align: center;
+    color: #6a6a6a;
+
+}
+.project_table_VC_2{
+    color: #6a6a6a;
+    max-width: 80px;
+    min-width: 80px;
+    text-align: center;
+
+}
+
+.project_main{
+    padding : 0px 20px 0px 20px;
+    background-color: rgba(255, 252, 255, 0.8);
+    max-width: 60%;
+    min-width: 60%;
+    height: 100%;
+    word-break:break-all;
+    float: left;
+    table-layout:fixed;
+    text-overflow:ellipsis;
+   
+}
+
+.project_comment{
+    max-width: 40%;
+    min-width: 40%;
+    height: 100%;
+    float: right;
+    table-layout:fixed;
+    text-overflow:ellipsis;
+}
+
+.comment_s{
+   
+}
+.project_view{
+    font-family: "Nirmala UI";
+    word-break:break-all;
+    width : 80%;
+    max-width:1100px;
+    height: 800px;
+    margin: 1% auto;
+}
+
+.con_naiyo{
+    height:300px;
+    word-break:break-all;
+    overflow:auto ;
+
+}
+
+.project_contents{
+    
+    width: 100%;
+    height: 30%;
+    padding: 10px 15px 15px 20px;
+    word-break:break-all;
+    table-layout:fixed;
+    text-overflow:ellipsis;
+
+
+}
+.p_subject{
+    font-family : "Nirmala UI";
+    border-bottom: solid 1px;
+    border-color: #9d9d9d;
+}
+.p_td{
+   
+    float : right;
+    text-align : right;
+    font-size : 13px;
+    color :  #919191;
+ 
+}
+
+.project_comment{
+    height: 800px;
+    padding: 10px 15px 15px 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+
+}
+.comment_view{
+    
+    margin: 3% 0px 0px 0px;
+    width: 100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    table-layout:fixed;
+
+}
+
+.comment_area{
+    width:85%;
+    height: 90px;
+    resize: none;
+}
+.comment_layout1{
+    text-align : left;
+    width: 15%;
+    border-bottom: solid 1px;
+    border-color: #9d9d9d;
+    table-layout:fixed;
+}
+.comment_layout2{
+
+}
+.comment_proflie{
+    margin-bottom : 5px;
+    
+    font-family : "Nirmala UI";
+    border-bottom : 1px solid;
+}
+.comment_layout3{
+    width: 10%;
+}
+.comment_btn{
+    width: 4%;
+    height: 90px;
+    background-color: rgba(103, 112, 255, 0.3);
+    border-color: transparent;
+
+}
+.comment_btn2{
+    height : auto;
+    text-align: center;
+    width: auto;
+    background-color: #ffffff;
+    border-color: transparent;
+}
+.pagination{
+     margin: 0 auto;
+}
+.hit_num{
+     background-image:url("img/honey.png");
+     width: 29%;
+     height: 90px;
+     float: right;
+     border : 1px;
+     
+}
+.hit_img{
+    font-size : 30px;
+    width : 100%;
+    height : 100%;
+    text-align : center;
+    margin-top: 30%;
+    
+}

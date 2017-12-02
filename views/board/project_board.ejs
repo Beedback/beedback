@@ -1,0 +1,106 @@
+<% include ./board_head %>
+
+<div class="project_board">
+     <table class="project_table">
+       <%
+        var start = (pageNum-1)*5;
+
+        for (var i = start ; i < result.length ; i++) { 
+        %>
+            <tr>
+                <td rowspan="3" class="project_table_img"> <a href="https://beedback-bskwon.c9users.io/view/?board=Project&num=<%= result[i].project_board_id %>"><img src="./img/<%= result[i].project_img %>" class="table_img"></a></td>
+                <td class="project_table_name" onclick="location=href='#'"><strong><%= result[i].project_board_subject %></strong></td>
+                <td class="project_table_VC">VIEW</td>
+                <td class="project_table_VC">COMMENTS</td>
+            </tr>
+            <tr>
+                <td class="project_table_subject"><%= result[i].project_board_content %></td> 
+                <td rowspan="2" class="project_table_VC_2"><%= result[i].project_board_hits %></td> 
+                <td rowspan="2" class="project_table_VC_2"><%= result[i].project_board_comment %></td>
+            </tr>
+            <tr>
+                <td class="project_table_user"><%= result[i].nickname%> | <%= result[i].project_board_regDate%></td>
+            </tr>
+        <%
+            if (i == pageNum*5-1) {
+                break;
+            }
+        }
+        %>
+        <%
+        /*■■■■■■■■■■■■■■■■■■■■■■■■■■■■■페이지 네이션■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
+        var totalPage = parseInt(result.length/5+1);            // 총 페이지
+        var firstPage = 0;
+        var lastPage = 0;
+        
+        if (result.length != 0 && result.length % 5 == 0)    // 10의 배수이면 총 페이지 -1
+            totalPage -= 1;
+
+        if (pageNum <= 2) {                // 현 페이지가 1, 2 이면
+            firstPage = 1;                 // 시작페이지가 1
+            if (totalPage < 5)             // 총 페이지가 5보다 작으면
+                lastPage = totalPage;     // 마지막 페이지는 총 페이지와 같다.
+            else
+                lastPage = 5;              // 총 페이지가 5를 넘으면 마지막 페이지는 5이다.
+        } else if (pageNum >= totalPage - 1) {        // 현 페이지가 총 페이지, 총 페이지-1, 총 페이지-2 이면
+            if (pageNum == 3 || pageNum == 4) // 만약 총페이지가 5이하 이면
+                firstPage = 1;                 // 시작 페이지는 1
+            else
+                firstPage = totalPage - 4;    // 아니면 시작은 총 페이지 -4
+
+            lastPage = totalPage;             // 마지막 페이지는 총 페이지와 같다.
+        } else {
+            firstPage = pageNum-2;          // 아니면 시작은 현페이지 -2
+            lastPage = parseInt(pageNum)+2;           // 마지막은 현페이지 +2
+        }
+        
+        %>
+        
+        <tr style="text-align:center;">
+            <td colspan="4">
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            <% if (pageNum!=1) { %>
+                                <a href="https://beedback-bskwon.c9users.io/board/?board_name=Project&page=<%= parseInt(pageNum)-1 %>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            <% } else { %>
+                                <span aria-hidden="true">&laquo;</span>
+                            <% } %>
+                        </li>
+                        <% for (var i = firstPage ; i <= lastPage ; i++) { 
+                            if (i == pageNum) { %> <!--현 페이지에 액티브 해준다-->
+                                <li class="active">
+                                    <a href="https://beedback-bskwon.c9users.io/board/?board_name=Project&page=<%= i %>">
+                                        <%= i %>
+                                    </a>
+                                </li>
+                            <% } else {%> <!--아니면 그냥 액티브 없이 출력-->
+                                <li>
+                                    <a href="https://beedback-bskwon.c9users.io/board/?board_name=Project&page=<%= i %>">
+                                        <%= i %>
+                                    </a>
+                                </li>
+                            <% }%>
+                        <% } %>
+                        <li>
+                            <% if (pageNum != totalPage) { %>
+                                <a href="https://beedback-bskwon.c9users.io/board/?board_name=Project&page=<%= parseInt(pageNum)+1 %>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            <% } else { %>
+                                <span aria-hidden="true">&raquo;</span>
+                            <% } %>
+                            
+                        </li>
+                    </ul>
+                </nav>
+            </td>
+        </tr>
+   
+        <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■페이지 네이션■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
+   </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+body
+{
+    background: url("/img/back.png");
+}
+
+.row
+{
+
+    display: table;
+    margin-top:2%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.main{
+
+    display: table;
+    
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+ul {
+
+    float: left;
+    margin-right: 1%;
+
+}
+li {
+    font-size: 16px;
+    font-family: Calibri;
+    text-align: center;
+}
+
+li a {
+    color: #ffffff;
+}
+.btn#head{
+    border: none;
+    background-color: transparent;
+}
+.hexagon {
+ fill:transparent;
+ pointer-events: all;
+ fill: url(#imgg);
+ 
+
+ 
+
+}
+
+.hexagon path {
+    -webkit-transition: fill 250ms linear;
+    transition: fill 250ms linear;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+    
+    
+}
+
+.hexagon :hover {
+    fill: url(#imgg);
+    opacity: 1;
+    filter: alpha(opacity=100);
+     
+  
+}
+
+.hexagon .fill {
+    fill: url(#imgg);
+    opacity: 1;
+    filter: alpha(opacity=100);
+   
+}
+
+.mesh {
+    fill: none;
+    stroke: #ffffff;
+    stroke-opacity: 0.4;
+    pointer-events: none;
+}
+
+.border {
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 2px;
+    pointer-events: none;
+}
+.navboard{
+    display: inline-block;
+    text-align: center;
+    font-size: 25px;
+
+}
+.board1{
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.collapse{
+
+}
+
+.login_main{
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 60px 80px 60px 80px;
+    border : solid 1px;
+    border-color : #FFFFFF;
+}
+
+.login{
+    display: display;
+    
+}
+
+#imgg{
+    
+     margin-left: auto;
+    margin-right: auto;
+       
+}
+.heximg
+
+{
+      margin-left: auto;
+      margin-right: auto;
+}
+.member_s
+{
+    margin : 0 auto;
+}

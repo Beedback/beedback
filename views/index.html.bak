@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BB</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script src="//d3js.org/topojson.v1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    $("path").click(function() {console.log("blah blah blah");});
+</script>
+</head>
+<body>
+    
+<div class="row">
+    <div class="col-md-8" style="height: 100px"><img src="img/logo_2.png" alt=""></div>
+</div><br><br>
+
+<!-- Drop Down Menu-->
+<ul class="nav nav-pills">
+    <li><button  class="btn" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" style="margin-top: 10%">
+        <img class="btn-img" src="img/menu-button.png" style="background: transparent">
+    </button>
+        <div class="collapse" id="exCollapsingNavbar" style="position: absolute" >
+            <div class="board1">
+                <span class="navboard"><br>
+                    <a href="#">C</a><br><br>
+                    <a href="#">JAVA</a><br><br>
+                    <a href="#">Javascript</a><br><br>
+                    <a href="#">PHP</a><br><br>
+                    <a href="#">html</a><br><br>
+                    <a href="#">CSS</a><br><br>
+                    <a href="#">D3</a><br><br>
+                    <a href="#">뻘줌하면 여기로</a><br><br>
+                </span>
+            </div>
+        </div>
+    </li>
+    <!--상단부 버튼 모음 login board myProject-->
+    <li><a href="#" data-toggle="modal" data-target="#loginBtn">Login</a></li>
+    <li><a href="#">Board</a></li>
+    <!-- MyPage-->
+    <li><a href="#">My Project</a></li>
+    <!--<li><a href='#' data-toggle="modal" data-target="#facebookLogin">페북로긴</a></li>-->
+
+<!--페이스북 로그인 모달-->
+<div class="modal fade" id="facebookLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Login</h4>
+      </div>
+      <form class="form-signin" action="/facebookLogin" method="post">
+          <div class="modal-body">
+            <div class="container">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="text" id="inputEmail" class="form-control" placeholder="ID" required autofocus style="width:350px;" name="id">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required  style="width:350px;" name="passwd">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <!-- passport 삽입 -->
+            
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Join</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</ul>
+<div class="modal fade" id="loginBtn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Login</h4>
+      </div>
+      <!--카톡 로그인-->
+      <button onclick="window.location ='./auth/kakao'">까똑</button>
+      <!--페이스북 로그인-->
+      <button onclick="window.location ='./auth/facebook'">페북</button>
+      <form class="form-signin" action="/login" method="post">
+          <div class="modal-body">
+            <div class="container">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="text" id="inputEmail" class="form-control" placeholder="ID" required autofocus style="width:350px;" name="id">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required  style="width:350px;" name="passwd">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <!-- passport 삽입 -->
+            
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Join</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+<hr>
+
+<div class="main">
+    <script>
+        var width = window.innerWidth,
+            height = 680,
+            radius = 150;
+
+        var topology = hexTopology(radius, width, height);
+
+        var projection = hexProjection(radius);
+
+        var path = d3.geo.path()
+            .projection(projection);
+
+        var svg = d3.select("body").append("svg") //svg범위 생성
+            .attr("width", width)
+            .attr("height", height);
+
+        svg.append("g")  //속성추가
+            .attr("class", "hexagon")
+            .selectAll("path")
+            .data(topology.objects.hexagons.geometries)
+            .enter().append("a").attr("href","#").append("path")
+            .attr("d", function(d) { return path(topojson.feature(topology, d)); })
+            .attr("class", function(d) { return d.fill ? "fill" : null; })
+            .on("mousedown", mousedown)
+            .on("mousemove", mousemove)
+            .on("mouseup", mouseup);
+
+        svg.append("path")
+            .datum(topojson.mesh(topology, topology.objects.hexagons))
+            .attr("class", "mesh")
+            .attr("d", path);
+
+        var border = svg.append("path")
+            .attr("class", "border")
+            .call(redraw);
+
+        var mousing = 0;
+
+        function mousedown(d) {
+            mousing = d.fill ? -1 : +1;
+            mousemove.apply(this, arguments);
+        }
+
+        function mousemove(d) {
+            if (mousing) {
+                d3.select(this).classed("fill", d.fill = mousing > 0);
+                border.call(redraw);
+            }
+        }
+
+        function mouseup() {
+            mousemove.apply(this, arguments);
+            mousing = 0;
+        }
+        ///////////////////////////////////////////////////
+        function redraw(border) {
+            border.attr("d", path(topojson.mesh(topology, topology.objects.hexagons, function(a, b) { return a.fill ^ b.fill; })));
+
+        }
+
+        function hexTopology(radius, width, height) {
+            var dx = radius * 2 * Math.sin(Math.PI / 3),
+                dy = radius * 1.5,
+                m = Math.ceil((height + radius) / dy) + 1,
+                n = Math.ceil(width / dx) + 1,
+                geometries = [],
+                arcs = [];
+
+            for (var j = -1; j <= m; ++j) {  //육각형 찍어내는 새끼
+                for (var i = -1; i <= n; ++i) {
+                    var y = j * 2, x = (i + (j & 1) / 2) * 2;
+                    arcs.push([[x, y - 1], [1, 1]], [[x + 1, y], [0, 1]], [[x + 1, y + 1], [-1, 1]]);
+                }
+            }
+
+            for (var j = 0, q = 3; j < m; ++j, q += 6) {
+                for (var i = 0; i < n; ++i, q += 3) {
+                    geometries.push({
+                        type: "Polygon",
+                        arcs: [[q, q + 1, q + 2, ~(q + (n + 2 - (j & 1)) * 3), ~(q - 2), ~(q - (n + 2 + (j & 1)) * 3 + 2)]],
+                       
+                    });
+                }
+            }
+
+            return {
+                transform: {translate: [0, 0], scale: [1, 1]},
+                objects: {hexagons: {type: "GeometryCollection", geometries: geometries}},
+                arcs: arcs
+            };
+        }
+
+        function hexProjection(radius) {
+            var dx = radius * 2 * Math.sin(Math.PI / 3),
+                dy = radius * 1.5;
+            return {
+                stream: function(stream) {
+                    return {
+                        point: function(x, y) { stream.point(x * dx / 2, (y - (2 - (y & 1)) / 3) * dy / 2); },
+                        lineStart: function() { stream.lineStart(); },
+                        lineEnd: function() { stream.lineEnd(); },
+                        polygonStart: function() { stream.polygonStart(); },
+                        polygonEnd: function() { stream.polygonEnd(); }
+                    };
+                }
+            };
+        }
+        d3.select("g")
+            .selectAll("path")
+    </script>
+<!-- // Main Div -->
+</div>
+</body>
+</html>

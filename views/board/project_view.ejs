@@ -1,0 +1,97 @@
+<% include ./board_head %>
+
+    <div class="project_view">
+        <div class="project_main">
+           <table class="project_contents">
+                    <tr>
+                      <td class="p_subject"><h1><%= result[0].project_board_subject %></h1></td>
+                      
+                      <td class="p_subject">
+                                  <div class="hit_num" onclick="location=href='#'">
+                                      <div class="hit_img">  <!--추천버튼-->
+                                          <strong><%= result[0].project_board_hits %></strong>
+                                    </div>
+                          </div>
+                         </td> 
+                   </tr>
+                   <tr>
+                       <td></td>
+                       <td class="p_td">작성자 : <%= result[0].nickname %> | 조회수 : <%= result[0].project_board_hits %><br>
+                                        작성일 : <%= result[0].project_board_regDate %>                    
+                       </td>
+                       
+                   </tr>
+                   <!--<tr>-->
+                   <!--    <td class="p_td">작성일 : <%= result[0].project_board_regDate %></td>-->
+                   <!--    <td class="p_td">추천수 : <%= result[0].project_board_hits %></td>-->
+                   <!--</tr>-->
+               </table>               
+            </table>
+            <div class="con_naiyo">
+            <!--<img src="/board/img/<%= result[0].project_img %>"><br>-->
+            
+                <%= result[0].project_board_content %>
+            </div>
+        </div>
+        <form action="/comment" method="post">
+        <div class="project_comment">
+            <% if(session.passport) {%>
+                <textarea class="comment_area" name="comment">댓글을 입력하세요</textarea><button type="submit" class="comment_btn" style="display: inline-block; position: absolute">작성<br>완료</button>
+            <% } else { %>
+                로그인 하삼!! <br>
+            <% } %>
+            <div class="comment_s">
+            <table class="comment_view">
+                <tr>
+                    <td rowspan="2" class="comment_proflie" style="width:40%;height:50px;">
+                        <img class="comment_proflie" style="border-radius: 50%;width:50px;height:50px;" src="<%=session.passport.user._json.properties.thumbnail_image%>"> 
+                        <%=session.passport.user.displayName%></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            dasdasdasd
+                         
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align : right;" colspan="2">
+                        2019-09-10-11:45:22  
+                        <button id="show" type="button">답글작성</button>
+                        <button class="comment_btn2" style="background-color: #ffffff">수정</button>
+                        <button class="comment_btn2" style="background-color: #ffffff">삭제</button>
+                           <rere style="display: none">
+                                <div>
+                                    <textarea style="width:900%">댓글을 입력하세요</textarea>
+                                    <button type="button">작성완료</button>
+                                    <button id="hide" type="button">취소</button>
+                                </div>
+                            </rere>
+                    </td>
+                </tr>
+            </table>
+            </div>
+        </div>
+        </form>
+    </div>
+    <script>
+    $(document).ready(function(){
+
+        $("#show").click(function(){
+            $("rere").css("display:''");
+
+            $("rere").show();
+
+            $("#hide").click(function(){
+                $("rere").hide();
+            });
+        });
+    });
+
+
+</script>
+
+
+</body>
+</html>

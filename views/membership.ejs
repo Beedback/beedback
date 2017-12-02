@@ -1,0 +1,201 @@
+<% include ./head.ejs %>
+<script>
+    // 중복확인 검사 클래스
+    function Check(){
+        // 중복확인 검사 메소드(이벤트, DB에서 가져올 칼럼이름)
+        this.isValid = function(event, type){
+            // DB의 값과 검사할 데이터
+            let value = document.getElementsByName(type)[0].value;
+            // value = input태그의 value
+            let targetURL = 'https://beedback-bskwon.c9users.io/';
+            
+            switch(type){
+                // 검사할 칼럼이 user_id일때
+                case "user_id":
+                    targetURL += 'userid/';
+                    break;
+                case "nickname":
+                    targetURL += 'nickname/';
+            }
+            targetURL += value;
+            
+            $.getJSON(targetURL)
+            .then(data => {
+                if( data[0] ){        // 요청 결과값이 있을 때
+                    alert('이미 사용중인 '+type+'입니다.');
+                    return false;
+                }
+                else {                //요청 결과값이 없으면
+                    alert('사용가능한 '+ type + '입니다.');
+                    return true;
+                }
+            });
+                    
+            // type의 값이 잘못된 값일 때 오류 출력
+            return new Error('오류 받아라~~');
+        }
+    }
+    
+    var check = new Check();
+    
+    //회원가입 정보 입력 확인
+    function fieldCheck(){
+        // 사용자 정보 입력 필드를 모두 가져옴 
+        var user_info_fields = $('#user_info_field').find('input');
+        
+        for(var i = 0 ; i < user_info_fields.length ; i++){
+            //하나라도 비었을 시 return false;
+            if(user_info_fields[i].value == ""){
+                alert("유저 정보를 모두 입력해 주세요");
+                return false;
+            }
+        }
+        // 입력 필드 모두 채웠을 경우 form 작동시킴
+        return true;
+    }
+    
+    //비밀번호 글자 수 확인 
+    function pwdNumCheck(){
+        var pwdField = document.getElementById('pwdField');
+        var pwdFieldMessage = document.getElementById('pwdFieldMes');
+        console.log(pwdField.value);
+        //글자수 변경에 따른 알림 메세지 및 색 변경
+        if(pwdField.value.length>= 7 && pwdField.value.length <= 12 ){
+            pwdFieldMessage.className = 'text-success';
+            pwdFieldMessage.innerText = "Valid Password!";
+        } else {
+            pwdFieldMessage.className = 'text-danger';
+            pwdFieldMessage.innerText = "Password Is not Valid !";
+        }
+    }
+    
+    //비밀번호 확인 검증
+    function pwdVerifictionCheck(){
+        
+        var pwdVField = document.getElementById('pwdVerifiction');
+        var pwdField  = document.getElementById('pwdField');
+        var pwdVMesField = document.getElementById('pwdVeriMes')
+        
+        //비밀번호 검증 성공 시 Success 로 변경
+        if(pwdVField.value == pwdField.value){
+            pwdVMesField.innerText = "Success";
+        }else{
+            pwdVMesField.innerText = "....";
+        }
+    }
+    
+    //약관 동의 확인
+    function clauseAgreeCheck(){
+        //약관 동의 라디오 버튼
+        var agreeBtn = document.getElementById('agree');
+        //회원 가입 a tag
+        var membershipPanel = document.getElementById("membershipPanel");
+       
+        if(agreeBtn.checked){
+            $("#membershipPanel").attr("href", "#collapseTwo");
+            return true
+        }else{
+            alert("회원가입 약관에 동의 해주세요.")
+            $("#membershipPanel").attr("href", '#');
+            return false;
+        }
+    }
+
+</script>
+<div class="panel col-md-8 col-md-offset-2">
+    <div class="panel-heading"></div>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        BeedBack 이용 약관
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body"><center>
+                    <h2><strong>BeedBack 에 오신 것을 환영합니다.</strong></h2>
+                    <br>
+                    <p><h4>목적</h4></p>
+                    <p>BeedBack Service는 학생들 간의 project 및 아이디어 공유 , 피드백 목적의 사이트 입니다</p>
+                    <p>개인 및 팀의 아이디어를 다방면에서 관찰 해 기능 및 퀄리티 향상, 오류 축소 목적의 피드백입니다.</p>
+                    <p>여러 아이디어를 보고 더욱 창의적인 발상을 할 수 있게 함을 목적으로 하는 서비스 입니다.</p>
+                    <br>
+                    <p><h4>약관</h4></p>
+                    <p>BeedBack Service 에서 이루어 지는 피드백 중 상대를 비방하는 사람에 대한 제제가 있습니다.</p>
+                    <p style="color:red;">본 웹에서는 업로드 되는 아이디어의 저작권 책임을 지지 않습니다.</p>
+                </center></div>
+                <div>
+                    <center><h4>TEAM BEEDBACK</h4></center>
+  
+                    <div class="btn-group row" data-toggle="buttons">
+                        <label class="btn btn-default btn-lg btn-block">
+                            약관 동의<input type="radio" name="options" id="agree" value="agree" autocomplete="off">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="panel panel-default" style="overflow-y: auto;max-height: 400px;">
+            <div class="panel-heading text-center" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed" onclick="return clauseAgreeCheck()" id="membershipPanel" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        회원 가입
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    
+                    <form method="post" action="/user" onsubmit="fieldCheck()">
+                        <!--User Info Field -->
+                        <div id="user_info_field">
+                            <label>ID</label>
+                            <div class="input-group">
+                                <input type="text" name="user_id" value="" class="form-control" id="inputSuccess1"  placeholder="ID 를 입력하세요 ">
+                                <p class="input-group-btn">
+                                <button type="button" class="btn btn-default" onclick="check.isValid(event, 'user_id')">중복검사</button>
+                                </p>
+                            </div>
+                            <br>
+                            <label>NickName</label>
+                            <div class="input-group">
+                                <input type="text" name="nickname" value="" class="form-control" placeholder="NickName 을 입력하세요 ">
+                                <p class="input-group-btn">
+                                <button type="button" class="btn btn-default" onclick="check.isValid(event, 'nickname')">중복검사</button>
+                                </p>
+                            </div>
+                            <br>
+                            <label>Password ( 7 ~ 12 자 이내로 설정 해주세요.)</label>
+                            <input type="password" name="pwd" value="" onkeyup="pwdNumCheck()" class="form-control" id="pwdField" placeholder="비밀번호를 입력해주세요">
+                            <p class="text-danger" id="pwdFieldMes"> Password Is not Valid ! </p>
+                            
+                            <label>Password Check </label>
+                            <input type="password" onkeyup="pwdVerifictionCheck()" class="form-control" id="pwdVerifiction" placeholder="비밀번호를 확인해주세요">
+                            <p class="text-success" id="pwdVeriMes"> .....</p>
+                            
+                            <label>Tel</label>
+                            <input type="text" name="tel" value="" class="form-control" placeholder="ex) 010-xxxx-xxxx">
+                            <br>
+                            <label>주민등록번호</label>
+                            <input type="text" name="rrn" value="" class="form-control" placeholder="ex) 1994****">
+                            <br>
+                            <label>School</label>
+                            <input type="text"name="school" value="" class="form-control" placeholder="ex) 영진전문대학교">
+                            <br>
+                            <label>Local</label>
+                            <input type="password"name="local" value=""  class="form-control" placeholder="ex) 대구 광역시">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="panel-footer blockquote-reverse">
+                        <input type="submit" class="btn btn-default" id="membership_join_btn" value="회원가입">
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

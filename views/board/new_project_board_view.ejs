@@ -1,0 +1,62 @@
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $("#header").load("new_project_board_head.ejs");
+  
+    });
+</script>
+<body>
+<div id="header" class="header"></div>
+<div id="board_view" class="board_view">
+<div id="board_contents" class="board_contents"></div>
+</div>
+
+<script>
+
+    $(".hover").mouseleave(
+        function () {
+            $(this).removeClass("hover");
+        }
+    );
+
+//    window.onscroll = function(ev) {
+//        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+//            if(a>=100){
+//            }else{
+//                list_view();
+//            } //무한 스크롤 부분 수정이 필요함
+//        }
+//    };
+    var temp=0;
+    for(var i=0;i<result.length;i++){ //쒸~~발~~찍어버려~~
+        if(temp==10){
+            temp=0;
+        }else {
+            list_view(temp);
+            temp++;
+        }
+    }
+
+
+    function list_view(num) {  //프로젝트 게시물들을 찍는 함수
+
+        var board = document.getElementById("board_contents");
+        var div = document.createElement('div');
+        div.className="boards";
+        div.setAttribute("onclick","location.href='https://beedback-bskwon.c9users.io/view/?board=Project&num=<%= result[num].project_board_id %>'");
+        div.innerHTML+="<img src='./img/<%= result[num].project_img %>' class='boards'>";
+        div.innerHTML+="<figcaption><h3><%= result[num].project_board_subject %></h3><table>" +
+            "<tr><td colspan='2'><%= result[num].nickname%> </td></tr>" +
+            "<tr><td>추천수</td><td>조회수</td></tr>" +
+            "<tr><td><%= result[num].project_board_content %></td><td><%= result[num].project_board_comment %></td></tr>" +
+            "<tr><td colspan='2'><%= result[num].project_board_regDate%></td></tr>" +
+            "</table></figcaption>";
+        board.appendChild(div); //알아 해석해라
+    }
+
+</script>
+</body>
+</html>
+
+

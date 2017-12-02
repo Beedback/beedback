@@ -1,0 +1,38 @@
+<!-- include <== reference , logo , menubar-->
+<% include ./head.ejs %>
+    
+<!-- 로그인 패널 -->
+<form class="form-horizontal" method="post" action="/login">
+  <div class="login_main" style="display:table;">
+    <table style="text-align:center;">
+      <tr>
+        <td>
+          <input type="text" name="id" class="form-control" id="inputEmail3" placeholder="ID" required>
+        </td>
+        <td rowspan="2">
+          <a href="/login"><img style="height:90px;" class="btn-img2" src="img/login_button.png" ></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="password" name="passwd" class="form-control" id="inputPassword3" placeholder="Password" required>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" onclick="" style="vertical-align: middle; "> Remember me</td>
+        <!-- 회원 가입 --> 
+        <td><a href="/membership"><img style="height:50px; width:90px" class="btn-img2" src="img/join_button.png" ></a></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <a href="./auth/kakao"><img src="img/kakao_button.png"></a>
+          <a href="./auth/naver"><img src="img/naver_button.png"></a>
+          <a href="./auth/facebook"><img src="img/facebook_button.png"></a>
+         
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
+</body>
+</html>

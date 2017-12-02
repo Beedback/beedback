@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BEEDBACK</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/index.css" />
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script src="//d3js.org/topojson.v1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<!--title.ejs 긁어오기-->
+
+<div class="row" style="height: 100px"><a href="/"><img src="/img/logo_2.png" alt=""></a></div>
+<body>
+    
+<ul class="nav nav-pills">
+   
+    <li>
+        <!--DropDown Btn-->
+        <button id="head" class="btn" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" style="margin-top: 10%">
+            <img class="btn-img" src="/img/menu-button.png" style="background: transparent">
+        </button>
+        <div class="collapse" id="exCollapsingNavbar" style="position: absolute" >
+            <div class="board1">
+                <span class="navboard"><br>  
+                    <a href="/board?board_name=new_board">Project</a><br><br>
+                    <a href="/board?board_name=Freetalk">Freetalk</a><br><br>
+                    <a href="/board?board_name=JS">Javascript</a><br><br>
+                    <a href="/board?board_name=P">PHP</a><br><br>
+                    <a href="/board?board_name=H">html</a><br><br>
+                    <a href="/board?board_name=CS">CSS</a><br><br>
+                    <a href="/board?board_name=D">D3</a><br><br>
+                    <a href="#">뻘줌하면 여기로</a><br><br>
+                </span>
+            </div>
+        </div>
+    </li>
+    <% if(session.passport){ %><!--로그인 되지 않았을때-->
+    <li>
+        <a><%=session.passport.user.displayName%>님 환영합니다.</a>
+    </li>
+    <% } %>
+    <% if(!session.passport){ %><!--로그인 되면-->
+    <li><a href="/loginPage">Login</a></li>
+    <% } else { %>
+    <li><a href="/logout">Logout</a></li>
+    <% }%>
+    <li><a href="#">Board</a></li>
+    <li><a href="/myProject">My Project</a></li>
+</ul>
+<hr>
+<br>

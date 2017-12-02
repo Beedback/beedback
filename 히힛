@@ -1,0 +1,104 @@
+mysql 접속 
+    root 계정           mysql-ctl cli
+    beedback 계정       mysql -u beedback -p(엔터)beedback
+    
+디비 설정 페이지(nodeadmin)
+    https://beedback-bskwon.c9users.io/nodeadmin
+    
+    아이디              beedback
+    패스워드            beedback
+
+디비 설정
+        아이디          "beedback"
+        비밀번호        "beedback"
+        데이터베이스    "beedback"
+
+
+노드 서버 시작하기
+    터미널에 입력
+        nodemon server.js
+
+페이지 URL
+    https://beedback-bskwon.c9users.io
+    
+nodeadmin
+    https://beedback-bskwon.c9users.io/nodeadmin
+    
+phpmyadmin
+    https://beedback-bskwon.c9users.io/phpmyadmin
+    
+
+// beedback스키마에 user 테이블 생성
+CREATE TABLE `beedback`.`user` (
+  `user_id` VARCHAR(16) NOT NULL,
+  `user_passwd` VARCHAR(20) NOT NULL,
+  `age` INT NOT NULL,
+  `school` VARCHAR(40) NULL,
+  `local` VARCHAR(20) NOT NULL,
+  `tel` INT NOT NULL,
+  `nickname` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC));
+
+// beedback스키마에 project 테이블 생성
+// user테이블의 user_id를 project테이블의 project_manager가 참조
+CREATE TABLE `beedback`.`project` (
+  `project_id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(60) NOT NULL,
+  `content` TEXT NOT NULL,
+  `project_manager` VARCHAR(16) NOT NULL,
+  PRIMARY KEY (`project_id`),
+  INDEX `user_id_fk_idx` (`project_manager` ASC),
+  CONSTRAINT `user_id_fk`
+    FOREIGN KEY (`project_manager`)
+    REFERENCES `beedback`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■텍스트 수 제한■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+<!--1. 아래 스크립트를 HEAD 부분에 복사해 넣으세요. -->
+
+<script language="JavaScript" type="text/JavaScript">
+function CheckFieldLength(fn,wn,rn,mc) {
+var len = fn.value.length;
+if (len > mc) {
+fn.value = fn.value.substring(0,mc);
+len = mc;
+}
+document.getElementById(wn).innerHTML = len;
+document.getElementById(rn).innerHTML = mc - len;
+}
+</script>
+
+
+<!--<BODY></BODY> 부분에 아래의 스크립트를 복사해 넣으세요-->
+
+<form>
+<strong>textarea 1</strong><br>
+<textarea name="taMessage" id="taMessage" cols="40" rows="5"
+onkeyup="CheckFieldLength(taMessage, 'charcount', 'remaining', 20);" onkeydown="CheckFieldLength(taMessage, 'charcount', 'remaining', 20);" onmouseout="CheckFieldLength(taMessage, 'charcount', 'remaining', 20);"></textarea><br>
+<small><span id="charcount">0</span> characters entered. | <span id="remaining">20</span> characters remaining.</small><br>
+<br>
+<strong>textbox 1</strong><br>
+<input type="text" name="txtbox" id="txtbox" size="50" maxlength="50"
+onkeyup="CheckFieldLength(txtbox, 'charcount3', 'remaining3', 10);" onkeydown="CheckFieldLength(txtbox, 'charcount3', 'remaining3', 10);" onmouseout="CheckFieldLength(txtbox, 'charcount3', 'remaining3', 10);"/><br>
+<small><span id="charcount3">0</span> characters entered. | <span id="remaining3">10</span> characters remaining.</small><br>
+<br>
+<strong>textarea 2</strong><br>
+<textarea name="taMessage2" id="taMessage2" cols="40" rows="5"
+onkeyup="CheckFieldLength(taMessage2, 'charcount2', 'remaining2', 50);" onkeydown="CheckFieldLength(taMessage2, 'charcount2', 'remaining2', 50);" onmouseout="CheckFieldLength(taMessage2, 'charcount2', 'remaining2', 50);"></textarea><br>
+<small><span id="charcount2">0</span> characters entered. | <span id="remaining2">50</span> characters remaining.</small><br>
+</form>
+//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■텍스트 수 제한■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+
+                                ejs 태그 종류
+
+<%      'Scriptlet' tag, for control-flow, no output
+<%=     Outputs the value into the template (HTML escaped)
+<%-     Outputs the unescaped value into the template
+<%#     Comment tag, no execution, no output
+<%%     Outputs a literal '<%'
+%>      Plain ending tag
+-%>     Trim-mode ('newline slurp') tag, trims following newline

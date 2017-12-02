@@ -1,0 +1,139 @@
+<% include ./head.ejs %>
+<script>
+    //회원가입 정보 입력 확인 
+   function fieldCheck(){
+        // 사용자 정보 입력 필드를 모두 가져옴 
+        var user_info_fields = $('#user_info_field').find('input');
+        
+        for(var i = 0 ; i < user_info_fields.length ; i++){
+            //하나라도 비었을 시 return false;
+            if(user_info_fields[i].value == ""){
+                alert("유저 정보를 모두 입력해 주세요");
+                return false;
+            }   
+        }
+        // 입력 필드 모두 채웠을 경우 form 작동시킴
+        return true;
+    }
+    
+    //비밀번호 글자 수 확인 
+    function pwdNumCheck(){
+        
+        var pwdField = document.getElementById('pwdField');
+        var pwdFieldMessage = document.getElementById('pwdFieldMes');
+        console.log(pwdField.value);
+        //글자수 변경에 따른 알림 메세지 및 색 변경
+        if(pwdField.value.length >= 7 && pwdField.value.length <= 12 ){
+            pwdFieldMessage.className = 'text-success';
+            pwdFieldMessage.innerText = "Valid Password!";
+        } else {
+            pwdFieldMessage.className = 'text-danger';
+            pwdFieldMessage.innerText = "Password Is not Valid !";
+        }
+    }
+    
+    //비밀번호 확인 검증
+    function pwdVerifictionCheck(){
+        
+        var pwdVField = document.getElementById('pwdVerifiction');
+        var pwdField  = document.getElementById('pwdField');
+        var pwdVMesField = document.getElementById('pwdVeriMes')
+        
+        //비밀번호 검증 성공 시 Success 로 변경
+        if(pwdVField.value == pwdField.value){
+            pwdVMesField.innerText = "Success";
+        }else{
+            pwdVMesField.innerText = "....";
+        }
+    }
+    
+    //Id 중복 검사 
+    function idValidCheck(){
+        
+    }
+</script>
+
+<div style="margin : 0 auto; background-color:#ffffff; width:42%">
+<div style="border : solid 1px; border-color:white; width:800px">
+    <!-- 회원 가입 전 공지사항 -->  
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <!-- 주의사항 -->
+          <h4 class="panel-title">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title=" Click ! ">BeedBack 이용 약관 및 회원가입</button>
+            </a>
+          </h4>
+        </div>
+        <!-- 주의 사항 본문 -->
+        <div class="panel-body">
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <strong> BeedBack 에 오신 것을 환영합니다. </strong><br><br>
+            <strong> - 목적</strong><br>
+            &nbsp;- BeedBack Service는 학생들 간의 project 및 아이디어 공유 , 피드백 목적의 사이트 입니다 <br>
+            &nbsp;- 개인 및 팀의 아이디어를 다방면에서 관찰 해 기능 및 퀄리티 향상, 오류 축소 목적의 피드백입니다.<br>
+            &nbsp;- 여러 아이디어를 보고 더욱 창의적인 발상을 할 수 있게 함을 목적으로 하는 서비스 입니다.<br>
+            
+            <strong> - 약관</strong><br>
+            &nbsp;- BeedBack Service 에서 이루어 지는 피드백 중 상대를 비방하는 사람에 대한 제제가 있습니다.<br>
+            &nbsp;<span style="color:red;">- 본 웹에서는 업로드 되는 아이디어의 저작권 책임을 지지 않습니다.</span><br><br>
+            <center><strong> - TEAM BEEDBACK -</strong></center><hr>    
+          </div>
+        </div>
+        </div>
+
+  
+    <!--회원 가입 form-->
+    <div>
+            <form method="post" action="/" style="width:600px; " onsubmit="return fieldCheck()">
+                <!-- 일반회원 학생회원 선택 라디오 버튼 -->
+                <div data-toggle="buttons" style="align:center;">
+                  <label class="btn btn-default">
+                      <!-- 일반 -->
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Common
+                  </label>&nbsp;&nbsp;&nbsp;
+                  
+                  <label class="btn btn-default">
+                    <!-- 학생 -->
+                    <input type="radio" name="options" id="option3" autocomplete="off"> Student
+                  </label>
+                </div><br><br> 
+                
+                <!-- User Info Field -->
+                <div id="user_info_field">
+                    <label> - ID</label>
+                    <input type="text" data-status="false" name="id" value="" class="form-control" id="inputSuccess1"  placeholder="ID 를 입력하세요 ">
+                    <button class="btn btn-default" type="button" onclick="idValidCheck()">중복검사</button>
+                    <br>
+                      
+                    <label> - NickName</label>
+                    <input type="text" data-status="false" name="nickname" value="" class="form-control" placeholder="NickName 을 입력하세요 ">
+                    <button class="btn btn-default" type="button" onclick="nicknameValidCheck()">중복검사</button>
+                    <br>
+                    
+                    <label> - Password ( 7 ~ 12 자 이내로 설정 해주세요.)</label>
+                    <input type="password" data-status="false" name="pwd" value="" onkeyup="pwdNumCheck()" class="form-control" id="pwdField" placeholder="비밀번호를 입력해주세요">
+                    <p class="text-danger" id="pwdFieldMes"> Password Is not Valid ! </p>
+                    
+                    <label> - Password Check </label>
+                    <input type="password" data-status="false" onkeyup="pwdVerifictionCheck()" class="form-control" id="pwdVerifiction" placeholder="비밀번호를 확인해주세요">
+                    <p class="text-success" id="pwdVeriMes"> .....</p>
+                    
+                    <label> - Tel</label>
+                    <input type="text" data-status="false" name="tel" value="" class="form-control" placeholder="ID 를 입력하세요 "><br>
+                    
+                    <label> - 주민등록번호 (앞자리  <kbd>ex) 1994****</kbd>)</label>
+                    <input type="text" data-status="false" name="rrn" value="" class="form-control" placeholder="주민등록번호 앞자리를 입력 해 주세요"><br>
+                    
+                    <label> - School ( FullName <kbd>ex) 영진전문대학교</kbd> )</label>
+                    <input type="text" data-status="false" name="school" value="" class="form-control" placeholder="학교 명을 입력해주세요 "><br>
+                    
+                    <label> - Local </label>
+                    <input type="password" data-status="false" name="local" value=""  class="form-control" placeholder="지역을 입력 해 주세요 "><br>
+                </div>
+                
+                <input type="submit" class="btn btn-default" id="membership_join_btn" value="Join BeedBack">
+            </form>          
+      </div>
+</div>
